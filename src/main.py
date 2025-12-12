@@ -1,17 +1,22 @@
-from sample_data import get_sample_rows
-from transform import expand_rows
+from pathlib import Path
+import pandas as pd
+
+from transform import expand_rows_df
 
 
 def main():
-    rows = get_sample_rows()
-    expanded = expand_rows(rows)
+    # Шлях до data/input.csv відносно цього файлу (src/main.py)
+    csv_path = Path(__file__).resolve().parents[1] / "data" / "input.csv"
 
-    print(f"Input rows: {len(rows)}")
-    print(f"Expanded rows: {len(expanded)}")
+    # читаємо CSV → DataFrame
+    df = pd.read_csv(csv_path)
 
-    # Покажемо перші кілька рядків
-    for idx, r in enumerate(expanded[:10], start=1):
-        print(idx, r)
+    # Перетворюємо дані
+    expanded_df = expand_rows_df(df)
+
+    print(f"Input rows: {len(df)}")
+    print(f"Expanded rows: {len(expanded_df)}")
+    print(expanded_df.head(10))
 
 
 if __name__ == "__main__":

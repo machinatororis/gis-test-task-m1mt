@@ -1,4 +1,4 @@
-from __future__ import annotations
+import pandas as pd
 
 from typing import Dict, List, Any
 
@@ -54,3 +54,15 @@ def expand_rows(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     for row in rows:
         result.extend(expand_row(row))
     return result
+
+
+def expand_rows_df(df: pd.DataFrame) -> pd.DataFrame:
+    """Приймає DataFrame вихідних даних та повертає новий DataFrame з розмноженими рядками."""
+
+    rows = df.to_dict(orient="records")
+
+    expanded_rows = []
+    for row in rows:
+        expanded_rows.extend(expand_row(row))
+
+    return pd.DataFrame(expanded_rows)
