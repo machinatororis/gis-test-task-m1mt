@@ -33,7 +33,6 @@ def expand_row(row: Dict[str, Any]) -> List[Dict[str, Any]]:
     base_fields = {k: v for k, v in row.items() if k not in VALUE_COLS}
 
     if total <= 0:
-        # Все значения = 0 → возвращаем одну строку с нулями
         new_row = dict(base_fields)
         for col in VALUE_COLS:
             new_row[col] = 0
