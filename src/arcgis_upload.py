@@ -46,19 +46,21 @@ def _build_field_mapping() -> Dict[str, str]:
     Маппінг: назва колонки у DataFrame -> назва поля у Feature Layer.
     """
     return {
-        "Дата": "d_date",
-        "Область": "t_region",
-        "Місто": "t_city",
-        "Значення 1": "i_value_1",
-        "Значення 2": "i_value_2",
-        "Значення 3": "i_value_3",
-        "Значення 4": "i_value_4",
-        "Значення 5": "i_value_5",
-        "Значення 6": "i_value_6",
-        "Значення 7": "i_value_7",
-        "Значення 8": "i_value_8",
-        "Значення 9": "i_value_9",
-        "Значення 10": "i_value_10",
+        "Дата": "date__",
+        "Область": "Область",
+        "Місто": "city",
+        "Значення 1": "value_1",
+        "Значення 2": "value_2",
+        "Значення 3": "value_3",
+        "Значення 4": "value_4",
+        "Значення 5": "value_5",
+        "Значення 6": "value_6",
+        "Значення 7": "value_7",
+        "Значення 8": "value_8",
+        "Значення 9": "value_9",
+        "Значення 10": "value_10",
+        "lat": "lat",
+        "long": "long",
     }
 
 
@@ -97,9 +99,10 @@ def _df_to_features(df: pd.DataFrame) -> List[Dict[str, Any]]:
 
             value = row[df_col]
 
-            # Дату конвертуємо в epoch ms
-            if df_col == "Дата":
-                attributes[layer_field] = _parse_uk_date_to_epoch_ms(str(value))
+            if df_col in ("lat", "long"):
+                attributes[layer_field] = _parse_coord(value)
+            elif df_col == "Дата":
+                attributes[layer_field] = str(value)
             else:
                 attributes[layer_field] = value
 
