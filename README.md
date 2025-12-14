@@ -1,6 +1,5 @@
 # GIS Test Task — ArcGIS API for Python
 
-## About
 Тестове завдання на позицію **GIS Python Developer**.
 
 Скрипт реалізує:
@@ -38,17 +37,24 @@
 
 ---
 
+## Структура проєкту
+- `data/input.csv` — вхідні дані (приклад)
+- `src/transform.py` — трансформація таблиці (розмноження рядків)
+- `src/arcgis_upload.py` — робота з ArcGIS Online (add/update)
+- `src/main.py` — точка входу (читання CSV → transform → upload)
+
 ## Запуск проєкту
 
 1. Створити та активувати віртуальне середовище
 2. Встановити залежності
 3. Створити файл .env у корені проєкту:
 
-env
+```env
 ARCGIS_URL=https://www.arcgis.com
 ARCGIS_USERNAME=your_username
 ARCGIS_PASSWORD=your_password
 ARCGIS_ITEM_ID=c51cb411da1a468aaed719085337cc2b
+```
 
 4. Запустити скрипт:
 
@@ -63,3 +69,5 @@ python src/main.py
 - Appending Features - додавання нових об’єктів у шар;
 - Updating Features - оновлення атрибутів існуючих об’єктів;
 - Retrieve item and layer properties - отримання метаданих шару.
+
+Під час тестового завантажено 2460 об’єктів, помилок: 0.
