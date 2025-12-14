@@ -58,7 +58,9 @@ ARCGIS_ITEM_ID=c51cb411da1a468aaed719085337cc2b
 
 4. Запустити скрипт:
 
+```
 python src/main.py
+```
 
 ## Реалізовані можливості ArcGIS API
 
